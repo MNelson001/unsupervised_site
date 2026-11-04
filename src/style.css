@@ -24,3 +24,26 @@ h1 {
   line-height: 1.05;
   margin: 0 0 24px;
 }
+
+/* Wavy text + weird font sizes (spans created in script.js) */
+main p { line-height: 2; }
+
+.wavy-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.wavy-char {
+  display: inline-block;
+  vertical-align: middle;
+  animation: wavy 1.6s ease-in-out infinite;
+}
+
+@keyframes wavy {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.35em); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wavy-char { animation-duration: 6s; }
+}
