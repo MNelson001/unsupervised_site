@@ -15,61 +15,6 @@
       </p>
       <p>This is what it looks like before anyone has touched it. It won't stay this way.</p>
     </main>
-
-    <section id="archery" class="game" aria-labelledby="archery-title">
-      <div class="game-head">
-        <h2 id="archery-title">Angle Archers</h2>
-        <p class="game-sub">
-          Pull back anywhere on the field (mouse, trackpad or thumb) to set your angle and power,
-          then let go. First archer to 0 HP loses. Headshots hurt double.
-        </p>
-        <div class="mode" role="group" aria-label="Game mode">
-          <button type="button" data-mode="pvp" class="mode-btn is-active">2 players</button>
-          <button type="button" data-mode="cpu" class="mode-btn">vs computer</button>
-        </div>
-      </div>
-
-      <div class="hud">
-        <div class="hp hp-p1">
-          <span class="hp-name">Red</span>
-          <span class="hp-bar"><span id="hp1"></span></span>
-        </div>
-        <div class="hud-mid">
-          <div id="turn" class="turn">Red's turn</div>
-          <div id="wind" class="wind">Wind: calm</div>
-        </div>
-        <div class="hp hp-p2">
-          <span class="hp-name" id="p2name">Blue</span>
-          <span class="hp-bar"><span id="hp2"></span></span>
-        </div>
-      </div>
-
-      <div class="field">
-        <canvas id="arena" tabindex="0" aria-label="Archery field. Drag to aim, or use arrow keys and space."></canvas>
-        <div id="banner" class="banner" hidden>
-          <div class="banner-text" id="banner-text"></div>
-          <button type="button" id="rematch">Rematch</button>
-        </div>
-      </div>
-
-      <div class="controls">
-        <div class="ctl">
-          <span class="ctl-label">Angle</span>
-          <button type="button" data-adj="angle" data-d="-1" aria-label="Lower angle">−</button>
-          <output id="angleOut">45°</output>
-          <button type="button" data-adj="angle" data-d="1" aria-label="Raise angle">+</button>
-        </div>
-        <div class="ctl">
-          <span class="ctl-label">Power</span>
-          <button type="button" data-adj="power" data-d="-1" aria-label="Less power">−</button>
-          <output id="powerOut">60%</output>
-          <button type="button" data-adj="power" data-d="1" aria-label="More power">+</button>
-        </div>
-        <button type="button" id="fire" class="fire">Fire!</button>
-      </div>
-      <p class="game-tip">Keyboard: ↑/↓ angle, ←/→ power, Space to shoot. Your last shot's path stays faint so you can adjust.</p>
-    </section>
-
     <script src="/script.js"></script>
   </body>
 </html>
