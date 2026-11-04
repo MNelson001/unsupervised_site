@@ -1,4 +1,5 @@
 // Copies src/ to dist/, adds the protected footer and icons, and injects them into every HTML page.
+import { createHash } from "node:crypto";
 import { cp, mkdir, readdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -49,7 +50,39 @@ for await (const file of walk(DIST)) {
   if (!html.includes(FOOTER_TAG)) {
     html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, `${FOOTER_TAG}\n</body>`) : `${html}\n${FOOTER_TAG}\n`;
   }
-  await writeFile(file, html);
+  await writeFile(file, await fingerprintLinks(html, file));
+}
+
+/**
+ * Browsers may cache CSS, JS and images for hours, so after a build they'd show
+ * new HTML with old styles. Adding ?v=<content hash> to every local file link
+ * gives changed files a new URL, which no browser has cached.
+ */
+async function fingerprintLinks(html, htmlFile) {
+  const ATTR = /\b(src|href)=(["'])([^"']+)\2/gi;
+  const replacements = [];
+  for (const match of html.matchAll(ATTR)) {
+    const [whole, attr, quote, url] = match;
+    if (/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(url)) continue; // external, data:, mailto:, anchors
+    const [pathPart, query = ""] = url.split("#")[0].split("?");
+    if (!pathPart) continue;
+    const target = pathPart.startsWith("/")
+      ? path.join(DIST, decodeURIComponent(pathPart))
+      : path.join(path.dirname(htmlFile), decodeURIComponent(pathPart));
+    if (!target.startsWith(DIST) || target.endsWith(".html")) continue;
+    let hash;
+    try {
+      hash = createHash("sha256").update(await readFile(target)).digest("hex").slice(0, 10);
+    } catch {
+      continue; // not a file in the build
+    }
+    const params = new URLSearchParams(query);
+    params.set("v", hash);
+    const fragment = url.includes("#") ? url.slice(url.indexOf("#")) : "";
+    replacements.push([whole, `${attr}=${quote}${pathPart}?${params}${fragment}${quote}`]);
+  }
+  for (const [from, to] of replacements) html = html.replace(from, to);
+  return html;
 }
 
 if (pages === 0) throw new Error("No HTML pages in src/");
