@@ -7,8 +7,13 @@
 name: Build the queue
 
 on:
+  # GitHub's scheduler is best effort: runs are often late and sometimes skipped,
+  # especially near the top of the hour. So check every 15 minutes, off the hour.
+  # A run only builds changes from windows that have closed (and nothing twice),
+  # so most checks find nothing and finish in seconds; a skipped one is covered
+  # by the next.
   schedule:
-    - cron: "5 */3 * * *" # 5 minutes after each window closes (UTC)
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
     inputs:
       mode:
