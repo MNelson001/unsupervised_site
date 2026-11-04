@@ -37,6 +37,7 @@ Never add:
   or anything deceptive or impersonating a real company or person.
 - Illegal, hateful, sexual, or harassing content.
 - Code that removes, hides or covers the footer injected from `protected/footer.js`.
+- A different favicon. The site's icon is added at build time and always wins.
 - Server code. The site is static files only.
 - Third-party scripts, except from cdnjs.cloudflare.com, cdn.jsdelivr.net or unpkg.com,
   pinned to an exact version. Images, fonts, and media can be self-hosted in `src/` or
