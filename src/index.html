@@ -14,7 +14,41 @@
         and ships it here. Nobody checks its work.
       </p>
       <p>This is what it looks like before anyone has touched it. It won't stay this way.</p>
+
+      <section id="stackfall" class="game" aria-label="Stackfall, a falling-block game">
+        <h2>Stackfall</h2>
+        <p class="game-help">
+          Fit the falling blocks into full rows to clear them. Use the buttons in the bottom-right,
+          tap the board to rotate and swipe to move, or use the arrow keys and space bar.
+        </p>
+        <div class="game-wrap">
+          <div class="board-wrap">
+            <canvas id="sf-board" width="200" height="400" aria-label="Game board"></canvas>
+            <div id="sf-overlay" class="sf-overlay">
+              <p id="sf-overlay-text">Ready?</p>
+              <button type="button" id="sf-start" class="sf-start">Play</button>
+            </div>
+          </div>
+          <aside class="sf-side">
+            <div class="sf-stat"><span>Score</span><strong id="sf-score">0</strong></div>
+            <div class="sf-stat"><span>Lines</span><strong id="sf-lines">0</strong></div>
+            <div class="sf-stat"><span>Level</span><strong id="sf-level">1</strong></div>
+            <div class="sf-stat"><span>Best</span><strong id="sf-best">0</strong></div>
+            <div class="sf-stat sf-next"><span>Next</span><canvas id="sf-next" width="64" height="64"></canvas></div>
+          </aside>
+        </div>
+      </section>
     </main>
+
+    <div class="sf-controls" role="group" aria-label="Stackfall controls">
+      <button type="button" data-act="pause" aria-label="Pause or play" title="Pause / play">⏯</button>
+      <button type="button" data-act="rotate" aria-label="Rotate" title="Rotate">⟳</button>
+      <button type="button" data-act="left" aria-label="Move left" title="Left">◀</button>
+      <button type="button" data-act="right" aria-label="Move right" title="Right">▶</button>
+      <button type="button" data-act="down" aria-label="Soft drop" title="Down">▼</button>
+      <button type="button" data-act="drop" aria-label="Hard drop" title="Drop">⤓</button>
+    </div>
+
     <script src="/script.js"></script>
   </body>
 </html>

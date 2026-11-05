@@ -24,3 +24,151 @@ h1 {
   line-height: 1.05;
   margin: 0 0 24px;
 }
+
+/* ---------- Stackfall (falling-block game) ---------- */
+.game {
+  margin-top: 48px;
+  padding-bottom: 260px; /* room so the fixed controls never sit over the board */
+}
+
+.game h2 {
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+
+.game-help {
+  font-size: 15px;
+  color: #444;
+  margin: 0 0 16px;
+}
+
+.game-wrap {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.board-wrap {
+  position: relative;
+  line-height: 0;
+}
+
+#sf-board {
+  display: block;
+  width: min(240px, 52vw);
+  height: auto;
+  aspect-ratio: 1 / 2;
+  background: #15131f;
+  border: 3px solid #111;
+  border-radius: 6px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sf-overlay {
+  position: absolute;
+  inset: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(21, 19, 31, 0.78);
+  color: #fff;
+  line-height: 1.3;
+  text-align: center;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.sf-overlay[hidden] { display: none; }
+
+.sf-overlay p {
+  margin: 0;
+  font-size: 20px;
+}
+
+.sf-start {
+  font: 600 16px/1 ui-sans-serif, system-ui, sans-serif;
+  background: #ffb02e;
+  color: #111;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 22px;
+  cursor: pointer;
+}
+
+.sf-side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.sf-stat {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.sf-stat span {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #666;
+}
+
+.sf-stat strong { font-size: 20px; }
+
+#sf-next {
+  margin-top: 4px;
+  width: 64px;
+  height: 64px;
+  background: #15131f;
+  border-radius: 6px;
+}
+
+/* Controls: fixed in the bottom-right, above the site footer */
+.sf-controls {
+  position: fixed;
+  right: 12px;
+  bottom: 84px;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: repeat(2, 56px);
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sf-controls button {
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 12px;
+  background: #15131f;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sf-controls button:active,
+.sf-controls button.is-down { background: #ffb02e; color: #111; }
+
+.sf-controls button:focus-visible { outline: 3px solid #ffb02e; outline-offset: 2px; }
+
+@media (max-width: 420px) {
+  .sf-controls { grid-template-columns: repeat(2, 50px); right: 8px; }
+  .sf-controls button { width: 50px; height: 50px; font-size: 22px; }
+  .game-wrap { gap: 10px; }
+}
