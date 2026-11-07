@@ -15,6 +15,32 @@
       </p>
       <p>This is what it looks like before anyone has touched it. It won't stay this way.</p>
 
+      <section id="dog-room" class="dog-room" aria-label="The living room, where a small dog lives">
+        <h2>The Living Room</h2>
+        <p class="game-help">
+          A small dog lives here. He wanders around and hops on the furniture. Click or tap the room
+          (or any empty part of the page) and he farts. Once the room fills up with gas, someone
+          comes to clear it out.
+        </p>
+        <div class="dog-stage">
+          <canvas id="dog-scene" width="800" height="450" tabindex="0" role="img"
+            aria-label="A cozy living room with a couch, an ottoman, a window and a small brown dog walking around. Press Enter to make him fart."></canvas>
+        </div>
+        <div class="dog-bar">
+          <span class="dog-meter-label">Stink-o-meter</span>
+          <div class="dog-meter" role="meter" aria-label="Stink-o-meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="dog-meter">
+            <div class="dog-meter-fill" id="dog-meter-fill"></div>
+          </div>
+          <span id="dog-meter-text" class="dog-meter-text">0%</span>
+        </div>
+        <div class="dog-bar">
+          <button type="button" class="dog-btn" id="dog-toot">💨 Toot</button>
+          <button type="button" class="dog-btn" id="dog-mute" aria-pressed="false">🔊 Sound on</button>
+          <span class="dog-count">Rooms aired out: <strong id="dog-count">0</strong></span>
+        </div>
+        <p id="dog-said" class="dog-said" aria-live="polite">Click anywhere. I dare you.</p>
+      </section>
+
       <section id="stackfall" class="game" aria-label="Stackfall, a falling-block game">
         <h2>Stackfall</h2>
         <p class="game-help">
@@ -50,5 +76,6 @@
     </div>
 
     <script src="/script.js"></script>
+    <script src="/dog.js"></script>
   </body>
 </html>
